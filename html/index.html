@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Aksels och Rasmus robot</title>
+<meta charset="UTF-8">
+<script src="jquery-2.2.2.min.js"></script>
+<link rel="icon" type="image/png" href="robot.png">
+<style>
+body {
+	background-color: aqua;
+}
+
+h1 {
+	font-family: 'arial black';
+}
+
+p {
+	font-family: "arial";
+	font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Aksels och Rasmus robot</h1>
+<p>Styr med wasd och u/n</p>
+<a href="javascript:send('w')">W</a>
+<script>
+// Variabler
+var pressedKeys = {}; // Alla knappar som är nedtryckta för tillfället.
+var keyLeft  = 37;
+var keyUp    = 38;
+var keyRight = 39;
+var keyDown  = 40;
+
+var keyW = 87;
+var keyA = 65;
+var keyS = 83;
+var keyD = 68;
+var keyU = 85;
+var keyN = 78;
+
+function send(str) {
+	$.get("/" + str + "/", function (response) {
+		console.log(response);
+	});
+}
+
+$(document).keydown(function(event) {
+	pressedKeys[event.which] = true;
+	switch(event.which) {
+	case keyLeft:
+	case keyA:
+		send("a");
+		break;
+
+	case keyUp:
+	case keyW:
+		send("w");
+		break;
+
+	case keyRight:
+	case keyD:
+		send("d");
+		break;
+
+	case keyDown:
+	case keyS:
+		send("s");
+		break;
+
+	case keyU:
+		send("u");
+		break;
+
+	case keyN:
+		send("n");
+		break;
+	default:
+		console.log("key: " + event.which);
+		return; // exit this handler for other keys
+	}
+	event.preventDefault(); // prevent the default action (scroll / move caret)
+});
+$(document).keyup(function(event) {
+	pressedKeys[event.which] = false;
+});
+</script>
+</body>
+</html>
