@@ -18,13 +18,44 @@ p {
 	font-family: "arial";
 	font-size: 20px;
 }
+
+.buttoncontainer {
+	position: relative;
+}
+
+.boxbutton {
+	position: absolute;
+	display: block;
+	background-color: green;
+	color: black;
+	width: 100px;
+	height: 100px;
+	border: solid black 3px;
+	border-radius: 20px;
+	text-align: center;
+	font-size: 80px;
+	font-family: arial;
+}
+
+.boxbutton:active {
+	background-color: lime;
+	color: white;
+}
+
 </style>
 </head>
 <body>
 
 <h1>Aksels och Rasmus robot</h1>
 <p>Styr med wasd och u/n</p>
-<a href="javascript:send('w')">W</a>
+<div class="buttoncontainer">
+<a class="boxbutton" style="left: 100px; top: 0px;" href="javascript:send('w')">W</a>
+<a class="boxbutton" style="left: 0px; top: 100px;" href="javascript:send('a')">A</a>
+<a class="boxbutton" style="left: 100px; top: 200px;" href="javascript:send('s')">S</a>
+<a class="boxbutton" style="left: 200px; top: 100px;" href="javascript:send('d')">D</a>
+<a class="boxbutton" style="left: 400px; top: 40px;" href="javascript:send('u')">U</a>
+<a class="boxbutton" style="left: 400px; top: 160px;" href="javascript:send('n')">N</a>
+</div>
 <script>
 // Variabler
 var pressedKeys = {}; // Alla knappar som är nedtryckta för tillfället.
